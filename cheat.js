@@ -1,5 +1,5 @@
 var keyboard = {
-    size: 80,
+    size: 60,
     init: function() {
         keyboard.kbd = $('<div>').appendTo(document.body).css('font-family', 'sans-serif');
         keyboard.ui().appendTo(document.body);
@@ -14,7 +14,6 @@ var keyboard = {
         });
         keyboard.updateSizes();
         keyboard.addRow();
-        keyboard.addRow('shift');
         keyboard.addRow('ctrl');
         keyboard.addRow(['alt', 'shift']);
     },
@@ -175,6 +174,17 @@ var keyboard = {
         keyboard.updateRowSizes();
         $('.data').each(function() {
             $(this).height(0).height(this.scrollHeight);
+        });
+        // an ugly hack, which fixes a visual bug due to rounding
+        var endPx = undefined;
+        keyboard.kbd.find('>br').each(function() {
+            var key = $(this).prev().find('>div');
+            var thisPx = key.width() + key.offset().left;
+            if (endPx !== undefined) {
+                key.width(key.width() - (thisPx - endPx));
+            } else {
+                endPx = thisPx;
+            }
         });
     },
     updateRowSizes: function() {
