@@ -1,8 +1,8 @@
 var keyboard = {
     size: 60,
     init: function() {
-        keyboard.kbd = $('<div>').appendTo(document.body).css('font-family', 'sans-serif');
         keyboard.ui().appendTo(document.body);
+        keyboard.kbd = $('<div>').appendTo(document.body).css('font-family', 'sans-serif');
         [
             '`1234567890-=|bksp|1.7|',
             '|tab|1.7|qwertyuiop[]\\',
@@ -19,6 +19,9 @@ var keyboard = {
     },
     ui: function() {
         return $('<div>')
+            .append($('<div>')
+                .text('Click any of the labels on the keys to edit the corresponding text field.')
+            )
             .append($('<div>')
                 .append($('<button>')
                     .text('+size')
