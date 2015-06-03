@@ -1,5 +1,5 @@
 var keyboard = {
-    size: 100,
+    size: 80,
     init: function() {
         keyboard.kbd = $('<div>').appendTo(document.body).css('font-family', 'sans-serif');
         keyboard.ui().appendTo(document.body);
@@ -217,7 +217,8 @@ var keyboard = {
                     .text(transFunc($(this).data('key')))
                     .css({
                         fontWeight: 'bold',
-                        padding: '0px 5px 0px 0px'
+                        padding: '0px 5px 0px 0px',
+                        whiteSpace: 'nowrap'
                     })
                     .click(function() {
                         $(this).parent().find('textarea').focus().select();
